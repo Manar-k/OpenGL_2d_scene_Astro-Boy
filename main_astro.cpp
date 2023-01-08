@@ -27,25 +27,90 @@ float xaxis, yaxis, zaxis, clockwise, face_clr1, face_clr2, face_clr3;
 bool leser = true;//Extra leaser gun
 float flyud, flyrl, robotbody, robotface, shot, leaseron1, leaseron2, leaseron3;
 
-class Eyes {       // The class
-  public:             // Access specifier
-    int myNum;        // Attribute (int variable)
-    string myString;  // Attribute (string variable)
-};
-void draw_line()
-{
-    glEnable(GL_LINE_STIPPLE);
-    glLineWidth(0.5f);
-    glBegin(GL_LINES);
+class Shapes {       // This class for shapes to draw face and body
+  public:            // Access specifier
+    void draw_line()
+    {
+        glEnable(GL_LINE_STIPPLE);
+        glLineWidth(0.5f);
+        glBegin(GL_LINES);
+        
+        glVertex2f(0.0f, 0.0f);
+        glVertex2f(0.0f, 0.1f);
+        
+        glEnd();
+        glDisable(GL_LINE_STIPPLE);
+        
+        glFlush();
+    }
 
-    glVertex2f(0.0f, 0.0f);
-    glVertex2f(0.0f, 0.1f);
+    void draw_triangle()
+    {
+        glBegin(GL_TRIANGLES);
+        
+        glVertex2f(0.0f, 0.0f);
+        glVertex2f(0.40f, 0.0f);
+        glVertex2f(0.0f, 0.40f);
+        glEnd();
+        
+        glFlush();
+    }
 
-    glEnd();
-    glDisable(GL_LINE_STIPPLE);
+    void draw_circle()
+    {
+        float x1 = 0.0f, y1 = 0.0f, radius = 0.5f;
+        int steps = 100;
+        float x2 = x1;
+        float y2 = y1 - radius;
+        float angle = 3.1415926f * 3.0f / steps;
 
+        for (int i = 0; i < steps; i++)
+        {
+            float xnew = radius * sin(angle * i);
+            float ynew = -radius * cos(angle * i);
+            
+            glBegin(GL_TRIANGLES);
+            glVertex3f(0.0f, 0.0f, 0.0f);
+            glVertex3f(x2, y2, 0.0);
+            glVertex3f(xnew, ynew, 0.0);
+            glEnd();
+            
+            x2 = xnew;
+            y2 = ynew;
+        }    
     glFlush();
-}
+    }
+
+    void draw_bow()
+    {
+        float x1 = 0.0f, y1 = 0.0f, radius = 0.04f;
+        
+        int steps = 1000;
+        float x2 = x1;
+        float y2 = y1 - radius;
+        float angle = 3.1415926f * 3.0f / steps;
+        
+        for (int i = 0; i < steps; i++)
+        {
+            float xnew = radius * sin(angle * i);
+            float ynew = -radius * cos(angle * i);
+            
+            glBegin(GL_POINTS);
+            glVertex3f(0.0f, 0.0f, 0.0f);
+            glVertex3f(x2, y2, 0.0);
+            glVertex3f(xnew, ynew, 0.0);
+            glEnd();
+            
+            x2 = xnew;
+            y2 = ynew;
+        }
+        glFlush();
+    }
+
+
+};
+
+Shapes shapeObj;
 
 void drawleaser(void)//extra
 {
@@ -74,17 +139,7 @@ void draw_mouth()
     glFlush();
 }
 
-void draw_triangle()
-{
-    glBegin(GL_TRIANGLES);
 
-    glVertex2f(0.0f, 0.0f);
-    glVertex2f(0.40f, 0.0f);
-    glVertex2f(0.0f, 0.40f);
-    glEnd();
-
-    glFlush();
-}
 
 void draw_EYEBROW()
 {
@@ -111,55 +166,9 @@ void draw_EYEBROW()
     glFlush();
 }
 
-void draw_bow()
-{
-    float x1 = 0.0f, y1 = 0.0f, radius = 0.04f;
 
-    int steps = 1000;
-    float x2 = x1;
-    float y2 = y1 - radius;
-    float angle = 3.1415926f * 3.0f / steps;
-    for (int i = 0; i < steps; i++)
-    {
-        float xnew = radius * sin(angle * i);
-        float ynew = -radius * cos(angle * i);
 
-        glBegin(GL_POINTS);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(x2, y2, 0.0);
-        glVertex3f(xnew, ynew, 0.0);
-        glEnd();
 
-        x2 = xnew;
-        y2 = ynew;
-    }
-    glFlush();
-}
-
-void draw_circle()
-{
-
-    float x1 = 0.0f, y1 = 0.0f, radius = 0.5f;
-    int steps = 100;
-    float x2 = x1;
-    float y2 = y1 - radius;
-    float angle = 3.1415926f * 3.0f / steps;
-    for (int i = 0; i < steps; i++)
-    {
-        float xnew = radius * sin(angle * i);
-        float ynew = -radius * cos(angle * i);
-
-        glBegin(GL_TRIANGLES);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(x2, y2, 0.0);
-        glVertex3f(xnew, ynew, 0.0);
-        glEnd();
-
-        x2 = xnew;
-        y2 = ynew;
-    }
-    glFlush();
-}
 
 void draw_tonge()
 {
@@ -621,25 +630,25 @@ void FACE()
     glScalef(1.5, 1.5, 1.0);
     glRotatef(270.0, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_triangle();
+    shapeObj.draw_triangle();
     glPopMatrix();
 
     //FACE
     glPushMatrix();
     glScalef(1.02, 1.02, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     glColor3f(face_clr1, face_clr2, face_clr3);
-    draw_circle();
+    shapeObj.draw_circle();
 
     //INFRONT HAIR
     glPushMatrix();
     glTranslatef(0.0, 0.3, 0.0);
     glRotatef(45.0, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_triangle();
+    shapeObj.draw_triangle();
     glPopMatrix();
 
     //R EAR
@@ -661,20 +670,20 @@ void FACE()
     glTranslatef(-0.5, 0.5, 0.0);
     glScalef(1.5, 1.5, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_triangle();
+    shapeObj.draw_triangle();
     glPopMatrix();
 
     //NOSE
     glPushMatrix();
     glTranslatef(0.0, -0.22, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_bow();
+    shapeObj.draw_bow();
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(0.0, -0.18, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_line();
+    shapeObj.draw_line();
     glPopMatrix();
 
 
@@ -788,7 +797,7 @@ void EYES()
     glScalef(Eyelid, Eyelid, 0.0);
     glRotatef(45.0, 0.0, 0.0, 1.0);
     glColor3f(face_clr1, face_clr2, face_clr3);
-    draw_triangle();
+    shapeObj.draw_triangle();
     glPopMatrix();
 
     //L Eyelid sad
@@ -797,7 +806,7 @@ void EYES()
     glScalef(Eyelid, Eyelid, 0.0);
     glRotatef(45.0, 0.0, 0.0, 1.0);
     glColor3f(face_clr1, face_clr2, face_clr3);
-    draw_triangle();
+    shapeObj.draw_triangle();
     glPopMatrix();
 
     //sad 3 drops
@@ -855,7 +864,7 @@ void EYES()
     glScalef(0.1, 0.1, 0.0);
     glRotatef(170.0, 1.0, 1.0, 1.0);
     glColor3f(1.0f, 1.0f, 1.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     glPushMatrix();
@@ -863,7 +872,7 @@ void EYES()
     glScalef(0.3, 0.3, 0.0);
     glRotatef(170.0, 1.0, 1.0, 1.0);
     glColor3f(1.0f, 1.0f, 1.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
 }
@@ -1240,7 +1249,7 @@ void body()
     glScalef(1.0, 1.0, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(1.0f, 0.0f, 0.0f);
-    draw_bow();
+    shapeObj.draw_bow();
     glPopMatrix();
 
     //right arm robot
@@ -1305,7 +1314,7 @@ void body()
     glScalef(2.0, 2.0, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(1.0f, 0.0f, 0.0f);
-    draw_bow();
+    shapeObj.draw_bow();
     glPopMatrix();
 
 
@@ -1377,7 +1386,7 @@ int main(int argc, char** argv)
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(700, 700);// Set the window's initial width & height
     glutInitWindowPosition(300, 300);
-    glutCreateWindow("**ASTRO BOY**");
+    glutCreateWindow("ASTRO BOY");
     init();
 
 
