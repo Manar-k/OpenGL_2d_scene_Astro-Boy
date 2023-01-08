@@ -112,6 +112,147 @@ class Shapes {       // This class for shapes to draw face and body
 
 Shapes shapeObj;
 
+class Parts {
+  public:
+    void draw_mouth()
+    {
+        glBegin(GL_LINES);
+        glColor3f(0.0f, 0.0f, 0.0f);
+        glVertex2f(0.0f, 0.0f);
+        glVertex2f(0.0f, 0.2f);
+        glEnd();
+        
+        glFlush();
+    }
+
+    void draw_EYEBROW()
+    {
+        float x1 = 0.0f, y1 = 0.0f, radius = 0.2f;
+        
+        int steps = 1000;
+        float x2 = x1;
+        float y2 = y1 - radius;
+        float angle = 3.1415926f * 1.0f / steps;
+        
+        for (int i = 0; i < steps; i++)
+        {
+            float xnew = radius * sin(angle * i);
+            float ynew = -radius * cos(angle * i);
+            
+            glBegin(GL_POINTS);
+            glVertex3f(0.0f, 0.0f, 0.0f);
+            glVertex3f(x2, y2, 0.0);
+            glVertex3f(xnew, ynew, 0.0);
+            glEnd();
+            
+            x2 = xnew;
+            y2 = ynew;
+        }
+        glFlush();
+    }
+
+    void draw_tonge()
+    {
+        float x1 = 0.0f, y1 = 0.0f, radius = 0.3f;
+        int steps = 100;
+        float x2 = x1;
+        float y2 = y1 - radius;
+        float angle = 3.1415926f * 1.0f / steps;
+
+        for (int i = 0; i < steps; i++)
+        {
+            float xnew = radius * sin(angle * i);
+            float ynew = -radius * cos(angle * i);
+            glBegin(GL_TRIANGLES);
+            glVertex3f(0.0f, 0.0f, 0.0f);
+            glVertex3f(x2, y2, 0.0);
+            glVertex3f(xnew, ynew, 0.0);
+            glEnd();
+            
+            x2 = xnew;
+            y2 = ynew;
+        }
+        glFlush();
+    }
+    
+    void draw_eye()
+    {
+        float x1 = 0.0f, y1 = 0.0f, radius = 0.3f;
+        int steps = 100;
+        float x2 = x1;
+        float y2 = y1 - radius;
+        float angle = 3.1415926f * 3.0f / steps;
+        for (int i = 0; i < steps; i++)
+        {
+            float xnew = radius * sin(angle * i);
+            float ynew = -radius * cos(angle * i);
+
+            glBegin(GL_TRIANGLES);
+            glVertex3f(0.0f, 0.0f, 0.0f);
+            glVertex3f(x2, y2, 0.0);
+            glVertex3f(xnew, ynew, 0.0);
+            glEnd();
+
+            x2 = xnew;
+            y2 = ynew;
+        }
+        glFlush();
+    }
+    
+    void draw_ear()
+    {
+        float x1 = 0.0f, y1 = 0.0f, radius = 0.1f;
+        int steps = 100;
+        float x2 = x1;
+        float y2 = y1 - radius;
+        float angle = 3.1415926f * 3.0f / steps;
+        for (int i = 0; i < steps; i++)
+        {
+            float xnew = radius * sin(angle * i);
+            float ynew = -radius * cos(angle * i);
+
+            glBegin(GL_TRIANGLES);
+            glVertex3f(0.0f, 0.0f, 0.0f);
+            glVertex3f(x2, y2, 0.0);
+            glVertex3f(xnew, ynew, 0.0);
+            glEnd();
+
+            x2 = xnew;
+            y2 = ynew;
+        }
+        glFlush();
+    }
+    
+    void draw_hair()
+    {
+        float x1 = 0.0f, y1 = 0.0f, radius = 0.6f;
+
+        glColor3f(0.0f, 0.0f, 0.0f);
+        int steps = 100;
+        float x2 = x1;
+        float y2 = y1 - radius;
+        float angle = 3.1415926f * 3.0f / steps;
+        for (int i = 0; i < steps; i++)
+        {
+            float xnew = radius * sin(angle * i);
+            float ynew = -radius * cos(angle * i);
+
+            glBegin(GL_TRIANGLES);
+            glVertex3f(0.0f, 0.0f, 0.0f);
+            glVertex3f(x2, y2, 0.0);
+            glVertex3f(xnew, ynew, 0.0);
+            glEnd();
+
+            x2 = xnew;
+            y2 = ynew;
+        }
+        glFlush();
+    }
+};
+
+Parts partObj;
+
+
 void drawleaser(void)//extra
 {
     glEnable(GL_LINE_STIPPLE);
@@ -125,149 +266,6 @@ void drawleaser(void)//extra
 
     glEnd();
     glDisable(GL_LINE_STIPPLE);
-    glFlush();
-}
-
-void draw_mouth()
-{
-    glBegin(GL_LINES);
-    glColor3f(0.0f, 0.0f, 0.0f);
-    glVertex2f(0.0f, 0.0f);
-    glVertex2f(0.0f, 0.2f);
-    glEnd();
-
-    glFlush();
-}
-
-
-
-void draw_EYEBROW()
-{
-    float x1 = 0.0f, y1 = 0.0f, radius = 0.2f;
-
-    int steps = 1000;
-    float x2 = x1;
-    float y2 = y1 - radius;
-    float angle = 3.1415926f * 1.0f / steps;
-    for (int i = 0; i < steps; i++)
-    {
-        float xnew = radius * sin(angle * i);
-        float ynew = -radius * cos(angle * i);
-
-        glBegin(GL_POINTS);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(x2, y2, 0.0);
-        glVertex3f(xnew, ynew, 0.0);
-        glEnd();
-
-        x2 = xnew;
-        y2 = ynew;
-    }
-    glFlush();
-}
-
-
-
-
-
-void draw_tonge()
-{
-
-    float x1 = 0.0f, y1 = 0.0f, radius = 0.3f;
-    int steps = 100;
-    float x2 = x1;
-    float y2 = y1 - radius;
-    float angle = 3.1415926f * 1.0f / steps;
-    for (int i = 0; i < steps; i++)
-    {
-        float xnew = radius * sin(angle * i);
-        float ynew = -radius * cos(angle * i);
-
-        glBegin(GL_TRIANGLES);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(x2, y2, 0.0);
-        glVertex3f(xnew, ynew, 0.0);
-        glEnd();
-
-        x2 = xnew;
-        y2 = ynew;
-    }
-    glFlush();
-}
-
-void draw_eye()
-{
-
-    float x1 = 0.0f, y1 = 0.0f, radius = 0.3f;
-    int steps = 100;
-    float x2 = x1;
-    float y2 = y1 - radius;
-    float angle = 3.1415926f * 3.0f / steps;
-    for (int i = 0; i < steps; i++)
-    {
-        float xnew = radius * sin(angle * i);
-        float ynew = -radius * cos(angle * i);
-
-        glBegin(GL_TRIANGLES);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(x2, y2, 0.0);
-        glVertex3f(xnew, ynew, 0.0);
-        glEnd();
-
-        x2 = xnew;
-        y2 = ynew;
-    }
-    glFlush();
-}
-
-void draw_ear()
-{
-    float x1 = 0.0f, y1 = 0.0f, radius = 0.1f;
-    int steps = 100;
-    float x2 = x1;
-    float y2 = y1 - radius;
-    float angle = 3.1415926f * 3.0f / steps;
-    for (int i = 0; i < steps; i++)
-    {
-        float xnew = radius * sin(angle * i);
-        float ynew = -radius * cos(angle * i);
-
-        glBegin(GL_TRIANGLES);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(x2, y2, 0.0);
-        glVertex3f(xnew, ynew, 0.0);
-        glEnd();
-
-        x2 = xnew;
-        y2 = ynew;
-    }
-    glFlush();
-}
-
-void draw_hair()
-{
-
-    float x1 = 0.0f, y1 = 0.0f, radius = 0.6f;
-
-    glColor3f(0.0f, 0.0f, 0.0f);
-    int steps = 100;
-    float x2 = x1;
-    float y2 = y1 - radius;
-    float angle = 3.1415926f * 3.0f / steps;
-    for (int i = 0; i < steps; i++)
-    {
-        float xnew = radius * sin(angle * i);
-        float ynew = -radius * cos(angle * i);
-
-        glBegin(GL_TRIANGLES);
-        glVertex3f(0.0f, 0.0f, 0.0f);
-        glVertex3f(x2, y2, 0.0);
-        glVertex3f(xnew, ynew, 0.0);
-        glEnd();
-
-        x2 = xnew;
-        y2 = ynew;
-    }
     glFlush();
 }
 
@@ -621,7 +619,7 @@ void FACE()
     //HAIR AROUND
     glPushMatrix();
     glTranslatef(0.0, 0.2, 0.0);
-    draw_hair();
+    partObj.draw_hair();
     glPopMatrix();
 
     // HAIR RIGHT SIDE
@@ -655,14 +653,14 @@ void FACE()
     glPushMatrix();//face_clr1
     glTranslatef(0.5, -0.2, 0.0);
     glColor3f(face_clr1, face_clr2, face_clr3);
-    draw_ear();
+    partObj.draw_ear();
     glPopMatrix();
 
     //L EAR
     glPushMatrix();
     glTranslatef(-0.5, -0.2, 0.0);
     glColor3f(face_clr1, face_clr2, face_clr3);
-    draw_ear();
+    partObj.draw_ear();
     glPopMatrix();
 
     //HAIR UP SIDE
@@ -697,7 +695,7 @@ void EYES()
     glTranslatef(0.3, 0.0, 0.0);
     glScalef(0.42, 0.77, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //MARK L RYR
@@ -705,7 +703,7 @@ void EYES()
     glTranslatef(-0.3, 0.0, 0.0);
     glScalef(0.42, 0.77, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //R EYE
@@ -713,7 +711,7 @@ void EYES()
     glTranslatef(0.3, 0.0, 0.0);
     glScalef(0.4, 0.75, 0.0);
     glColor3f(1.0f, 1.0f, 1.6f);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //L EYE
@@ -721,7 +719,7 @@ void EYES()
     glTranslatef(-0.3, 0.0, 0.0);
     glScalef(0.4, 0.75, 0.0);
     glColor3f(1.0f, 1.0f, 1.6f);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //R EYE b
@@ -729,7 +727,7 @@ void EYES()
     glTranslatef(0.3, 0.0, 0.0);
     glScalef(suprised_eye1, suprised_eye2, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //L EYE b
@@ -737,7 +735,7 @@ void EYES()
     glTranslatef(-0.3, 0.0, 0.0);
     glScalef(suprised_eye1, suprised_eye2, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //buble EYE r
@@ -745,7 +743,7 @@ void EYES()
     glTranslatef(suprised_eyetran, 0.0, 0.0);
     glScalef(0.1, 0.26, 0.0);
     glColor3f(1.0f, 1.0f, 1.6f);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //buble EYE l
@@ -753,7 +751,7 @@ void EYES()
     glTranslatef(suprised_eyetran2, 0.0, 0.0);
     glScalef(0.1, 0.26, 0.0);
     glColor3f(1.0f, 1.0f, 1.6f);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //EYEBROW LEFT
@@ -762,7 +760,7 @@ void EYES()
     glScalef(0.65, 0.65, 0.0);
     glRotatef(EYEBROW1, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_EYEBROW();
+    partObj.draw_EYEBROW();
     glPopMatrix();
 
     //EYEBROW RIGHT
@@ -771,7 +769,7 @@ void EYES()
     glScalef(0.65, 0.65, 0.0);
     glRotatef(EYEBROW1_RIGHT, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_EYEBROW();
+    partObj.draw_EYEBROW();
     glPopMatrix();
 
     //tye buble eye for happy buble_eye_clr
@@ -780,7 +778,7 @@ void EYES()
     glTranslatef(0.36, -0.1, 0.0);//-0.1 y sad_drops
     glScalef(0.1, 0.1, 0.0);
     glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //buble EYE l HAPPY
@@ -788,7 +786,7 @@ void EYES()
     glTranslatef(-0.36, -0.1, 0.0);
     glScalef(0.1, 0.1, 0.0);
     glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //R Eyelid sad
@@ -814,7 +812,7 @@ void EYES()
     glTranslatef(0.36, -0.2, 0.0);//second drop
     glScalef(sad_drops1, sad_drops1, 0.0);
     glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //buble EYE l HAPPY
@@ -822,14 +820,14 @@ void EYES()
     glTranslatef(-0.36, -0.2, 0.0);
     glScalef(sad_drops1, sad_drops1, 0.0);
     glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
     //-----
     glPushMatrix();
     glTranslatef(0.36, -0.3, 0.0);//thired drop
     glScalef(sad_drops1, sad_drops1, 0.0);
     glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //buble EYE l HAPPY
@@ -837,7 +835,7 @@ void EYES()
     glTranslatef(-0.36, -0.3, 0.0);
     glScalef(sad_drops1, sad_drops1, 0.0);
     glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     //ear detail LEFT
@@ -846,7 +844,7 @@ void EYES()
     glScalef(0.3, 0.3, 0.0);
     glRotatef(-190.0, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_EYEBROW();
+    partObj.draw_EYEBROW();
     glPopMatrix();
 
     //ear detail RIGHT
@@ -855,7 +853,7 @@ void EYES()
     glScalef(0.3, 0.3, 0.0);
     glRotatef(27.0, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_EYEBROW();
+    partObj.draw_EYEBROW();
     glPopMatrix();
 
     //hair highliter
@@ -883,7 +881,7 @@ void MOUTH()
     glPushMatrix();
     glTranslatef(0.1, -0.38, 0.0);
     glRotatef(90.0, 0.0, 0.0, 1.0);
-    draw_mouth();
+    partObj.draw_mouth();
     glPopMatrix();
 
     //happy mouth
@@ -892,7 +890,7 @@ void MOUTH()
     glScalef(hpy_muth_1, hpy_muth_1, 0.0);
     glRotatef(sad_muth_tra, 0.0, 0.0, 1.0);
     glColor3f(0.863f, 0.078f, 0.235f);
-    draw_tonge();
+    partObj.draw_tonge();
     glPopMatrix();
 
     glPushMatrix();
@@ -900,7 +898,7 @@ void MOUTH()
     glScalef(hpy_muth_2, hpy_muth_3, 0.0);
     glRotatef(90.0, 0.0, 0.0, 1.0);
     glColor3f(0.859f, 0.439f, 0.576f);
-    draw_tonge();
+    partObj.draw_tonge();
     glPopMatrix();
 
     glPushMatrix();
@@ -908,7 +906,7 @@ void MOUTH()
     glScalef(hpy_muth_2, hpy_muth_3, 0.0);
     glRotatef(sad_muth_tra, 0.0, 0.0, 1.0);
     glColor3f(0.859f, 0.439f, 0.576f);
-    draw_tonge();
+    partObj.draw_tonge();
     glPopMatrix();
 
     //sad helper tong
@@ -917,7 +915,7 @@ void MOUTH()
     glScalef(sad_scal_tong1, sad_scal_tong1y, 0.0);//
     glRotatef(sad_muth_tra, 0.0, 0.0, 1.0);//270
     glColor3f(0.859f, 0.439f, 0.576f);
-    draw_tonge();
+    partObj.draw_tonge();
     glPopMatrix();
 
 
@@ -926,7 +924,7 @@ void MOUTH()
     glScalef(suprised_mouth1, suprised_mouth2, 0.0);
     //glRotatef(0.0, 0.0, 0.0, 1.0);
     glColor3f(0.859f, 0.439f, 0.576f);
-    draw_eye();
+    partObj.draw_eye();
     glPopMatrix();
 
     glPushMatrix();//suprised mouth
