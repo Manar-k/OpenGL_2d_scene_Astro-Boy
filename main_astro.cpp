@@ -12,7 +12,7 @@ GLint win_width = 500,
 win_hight = 500;
 //HAPPY
 float eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b;
-float hpy_muth_1, hpy_muth_2, hpy_muth_3;
+float change_mouth_scale_1, change_mouth_scale_2, change_mouth_scale_3;
 //SAD
 float sad_muth_tra, sad_muth_tras_2, sad_muth_tras_3, sad_scal_tong1, sad_scal_tong1y, sad_drops1, Eyelid
 , EYEBROW1, EYEBROWtran, EYEBROW1_RIGHT;
@@ -29,9 +29,14 @@ float flyud, flyrl, robotbody, robotface, shot, leaseron1, leaseron2, leaseron3;
 
 
 void changeEyeColor(float r,float g,float b) {
-  eye_highlight_color_r = r;
-  eye_highlight_color_g = g;
-  eye_highlight_color_b = b;
+    eye_highlight_color_r = r;
+    eye_highlight_color_g = g;
+    eye_highlight_color_b = b;
+}
+void changeHappyMouthScale(float x,float y,float z) {
+    change_mouth_scale_1 = x; 
+    change_mouth_scale_2 = y; 
+    change_mouth_scale_3 = z;
 }
 
 class Shapes {       // This class for shapes to draw face and body
@@ -349,10 +354,7 @@ void key(unsigned char keyPressed, int x, int y) //faces
 
         //happy mouth & eye
         changeEyeColor(1.0f,1.0f,1.6f);
-
-        hpy_muth_1 = 0.65;
-        hpy_muth_2 = 0.5;
-        hpy_muth_3 = 0.28;
+        changeHappyMouthScale(0.65,0.5,0.28);
 
         suprised_mouth1 = 0.0;//helper to o back
         suprised_mouth2 = 0.0;
@@ -389,10 +391,7 @@ void key(unsigned char keyPressed, int x, int y) //faces
     case 'h':// to rotate the simile face clockwise relative to y - axis
         
         changeEyeColor(1.0f,1.0f,1.6f);
-
-        hpy_muth_1 = 0.65;
-        hpy_muth_2 = 0.5;
-        hpy_muth_3 = 0.28;
+        changeHappyMouthScale(0.65,0.5,0.28);
 
         suprised_mouth1 = 0.0;//helper to o back
         suprised_mouth2 = 0.0;
@@ -509,10 +508,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
         break;
 
     case 'R'://to rotate the surprise face counterclockwise relative to z-axis
-
-        hpy_muth_1 = 0.0;
-        hpy_muth_2 = 0.0;
-        hpy_muth_3 = 0.0;
+        
+        changeHappyMouthScale(0.0,0.0,0.0);
         sad_scal_tong1 = 0.0;
         sad_scal_tong1y = 0.0;
 
@@ -549,9 +546,7 @@ void key(unsigned char keyPressed, int x, int y) //faces
         break;
 
     case 'r'://to rotate the surprise face clockwise relative to z - axi
-        hpy_muth_1 = 0.0;
-        hpy_muth_2 = 0.0;
-        hpy_muth_3 = 0.0;
+        changeHappyMouthScale(0.0,0.0,0.0);
         sad_scal_tong1 = 0.0;
         sad_scal_tong1y = 0.0;
 
@@ -888,7 +883,7 @@ void MOUTH()
     //happy mouth
     glPushMatrix();
     glTranslatef(0.0, sad_muth_tras_2, 0.0);
-    glScalef(hpy_muth_1, hpy_muth_1, 0.0);
+    glScalef(change_mouth_scale_1, change_mouth_scale_1, 0.0);
     glRotatef(sad_muth_tra, 0.0, 0.0, 1.0);
     glColor3f(0.863f, 0.078f, 0.235f);
     partObj.draw_tonge();
@@ -896,7 +891,7 @@ void MOUTH()
 
     glPushMatrix();
     glTranslatef(0.0, -0.4, 0.0);
-    glScalef(hpy_muth_2, hpy_muth_3, 0.0);
+    glScalef(change_mouth_scale_2, change_mouth_scale_3, 0.0);
     glRotatef(90.0, 0.0, 0.0, 1.0);
     glColor3f(0.859f, 0.439f, 0.576f);
     partObj.draw_tonge();
@@ -904,7 +899,7 @@ void MOUTH()
 
     glPushMatrix();
     glTranslatef(0.0, sad_muth_tras_3, 0.0);
-    glScalef(hpy_muth_2, hpy_muth_3, 0.0);
+    glScalef(change_mouth_scale_2, change_mouth_scale_3, 0.0);
     glRotatef(sad_muth_tra, 0.0, 0.0, 1.0);
     glColor3f(0.859f, 0.439f, 0.576f);
     partObj.draw_tonge();
@@ -1390,9 +1385,7 @@ int main(int argc, char** argv)
 
     //happy
     changeEyeColor(0.0f,0.0f,0.0f);
-    hpy_muth_1 = 0.0;
-    hpy_muth_2 = 0.0;
-    hpy_muth_3 = 0.0;
+    changeHappyMouthScale(0.0,0.0,0.0);
 
     //sad
     sad_muth_tra = 270.0;
