@@ -969,7 +969,7 @@ void body()
         glScalef(0.6, 0.6, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(1.0f, 0.0f, 0.0f);//red
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
 
         glPushMatrix();
@@ -977,7 +977,7 @@ void body()
         glScalef(0.55, 0.55, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(1.0f, 0.549f, 0.0f);//orange
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
 
         glPushMatrix();
@@ -985,7 +985,7 @@ void body()
         glScalef(0.45, 0.45, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(1.0f, 1.0f, 0.0f);//yellow
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
 
         glPushMatrix();
@@ -993,7 +993,7 @@ void body()
         glScalef(0.3, 0.3, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(1.0f, 1.0f, 1.0f);
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
 
         //right fire
@@ -1002,7 +1002,7 @@ void body()
         glScalef(0.5, 0.5, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(1.0f, 0.0f, 0.0f);//red
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
 
         glPushMatrix();
@@ -1010,7 +1010,7 @@ void body()
         glScalef(0.45, 0.45, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(1.0f, 0.549f, 0.0f);//orange
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
 
         glPushMatrix();
@@ -1018,7 +1018,7 @@ void body()
         glScalef(0.35, 0.35, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(1.0f, 1.0f, 0.0f);//yellow
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
 
         glPushMatrix();
@@ -1026,7 +1026,7 @@ void body()
         glScalef(0.2, 0.2, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(1.0f, 1.0f, 1.0f);
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
     }
 
@@ -1037,7 +1037,7 @@ void body()
     glScalef(0.48, -0.28, 0.0);
     glRotatef(85.0, 0.0, 1.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //down shoes
@@ -1046,7 +1046,7 @@ void body()
     glScalef(0.45, -0.25, 0.0);
     glRotatef(85.0, 0.0, 1.0, 1.0);
     glColor3f(1.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //mark left down robot shoes
@@ -1054,7 +1054,7 @@ void body()
     glTranslatef(-0.15, -0.81, 0.0);
     glScalef(0.38, 0.38, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     // left down robot shoes
@@ -1062,7 +1062,7 @@ void body()
     glTranslatef(-0.15, -0.81, 0.0);
     glScalef(0.35, 0.35, 0.0);
     glColor3f(1.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
 
@@ -1071,7 +1071,7 @@ void body()
     glTranslatef(-0.15, -0.7, 0.0);
     glScalef(0.46, 0.46, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     // L left robot shoe
@@ -1079,7 +1079,7 @@ void body()
     glTranslatef(-0.15, -0.7, 0.0);
     glScalef(0.42, 0.42, 0.0);
     glColor3f(1.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     // R mark r robot shoes
@@ -1087,7 +1087,7 @@ void body()
     glTranslatef(0.19, -0.63, 0.0);
     glScalef(0.34, 0.34, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //right robot shoes
@@ -1095,7 +1095,7 @@ void body()
     glTranslatef(0.19, -0.63, 0.0);
     glScalef(0.3, 0.3, 0.0);
     glColor3f(1.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
 
@@ -1104,7 +1104,7 @@ void body()
     glTranslatef(-0.15, -0.63, 0.0);
     glScalef(0.34, 0.34, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //mark right leg*
@@ -1112,7 +1112,7 @@ void body()
     glTranslatef(0.15, -0.54, 0.0);
     glScalef(0.34, 0.34, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //left leg
@@ -1120,7 +1120,7 @@ void body()
     glTranslatef(-0.15, -0.63, 0.0);
     glScalef(0.3, 0.3, 0.0);
     glColor3f(1.0f, 0.894f, 0.769f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //right leg
@@ -1129,7 +1129,7 @@ void body()
     glScalef(0.3, 0.3, 0.0);
     //glRotatef(85.0, 0.0,0.0,1.0);
     glColor3f(1.0f, 0.894f, 0.769f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //mark*body 2 part left arm
@@ -1138,7 +1138,7 @@ void body()
     glScalef(0.84, -0.48, 0.0);
     glRotatef(85.0, 0.0, 1.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //mark* body 1 part left arm
@@ -1147,7 +1147,7 @@ void body()
     glScalef(0.74, -0.44, 0.0);
     glRotatef(15.0, 0.0, 1.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //mark* body part front up
@@ -1155,7 +1155,7 @@ void body()
     glTranslatef(-0.1, -0.35, 0.0);
     glScalef(1.1, 0.72, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //body part front up
@@ -1163,7 +1163,7 @@ void body()
     glTranslatef(-0.1, -0.35, 0.0);
     glScalef(1.0, 0.7, 0.0);
     glColor3f(1.0f, 0.894f, 0.769f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
 
@@ -1173,7 +1173,7 @@ void body()
     glScalef(0.7, -0.4, 0.0);
     glRotatef(15.0, 0.0, 1.0, 1.0);
     glColor3f(1.0f, 0.894f, 0.769f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
 
@@ -1183,7 +1183,7 @@ void body()
     glScalef(0.8, -0.44, 0.0);
     glRotatef(85.0, 0.0, 1.0, 1.0);
     glColor3f(1.0f, 0.894f, 0.769f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //body 3 part left arm
@@ -1192,7 +1192,7 @@ void body()
     glScalef(0.35, 0.35, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(1.0f, 0.894f, 0.769f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //mark hand
@@ -1201,7 +1201,7 @@ void body()
     glScalef(0.47, 0.47, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //hand
@@ -1210,7 +1210,7 @@ void body()
     glScalef(0.45, 0.45, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(1.0f, 0.894f, 0.769f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //robot hand
@@ -1219,7 +1219,7 @@ void body()
     glScalef(0.35, 0.35, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(0.663f, 0.663f, 0.663f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //healper robot hand
@@ -1228,7 +1228,7 @@ void body()
     glScalef(0.25, 0.25, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(0.412f, 0.412f, 0.412f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     if (leser) {
@@ -1237,7 +1237,7 @@ void body()
         glScalef(0.25, 0.25, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(leaseron1, leaseron2, leaseron3);
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
     }
 
@@ -1256,7 +1256,7 @@ void body()
     glScalef(1.0, 0.7, 0.0);
     glRotatef(95.0, 0.0, 1.0, 1.0);
     glColor3f(1.0f, 0.894f, 0.769f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //R mark hand
@@ -1265,7 +1265,7 @@ void body()
     glScalef(0.67, 0.67, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //R hand
@@ -1274,7 +1274,7 @@ void body()
     glScalef(0.65, 0.65, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(1.0f, 0.894f, 0.769f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //R robot hand
@@ -1283,7 +1283,7 @@ void body()
     glScalef(0.55, 0.55, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(0.663f, 0.663f, 0.663f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     //R healper robot hand
@@ -1292,7 +1292,7 @@ void body()
     glScalef(0.4, 0.4, 0.0);
     glRotatef(85.0, 0.0, 0.0, 1.0);
     glColor3f(0.412f, 0.412f, 0.412f);
-    draw_circle();
+    shapeObj.draw_circle();
     glPopMatrix();
 
     if (leser) {
@@ -1302,7 +1302,7 @@ void body()
         glScalef(0.4, 0.4, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
         glColor3f(leaseron1, leaseron2, leaseron3);
-        draw_circle();
+        shapeObj.draw_circle();
         glPopMatrix();
     }
 
