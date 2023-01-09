@@ -11,7 +11,7 @@ using namespace std;
 GLint win_width = 500,
 win_hight = 500;
 //HAPPY
-float buble_eye_clr, buble_eye_clr2, buble_eye_clr12;
+float eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b;
 float hpy_muth_1, hpy_muth_2, hpy_muth_3;
 //SAD
 float sad_muth_tra, sad_muth_tras_2, sad_muth_tras_3, sad_scal_tong1, sad_scal_tong1y, sad_drops1, Eyelid
@@ -26,6 +26,13 @@ float xaxis, yaxis, zaxis, clockwise, face_clr1, face_clr2, face_clr3;
 //EXTRA
 bool leser = true;//Extra leaser gun
 float flyud, flyrl, robotbody, robotface, shot, leaseron1, leaseron2, leaseron3;
+
+
+void changeEyeColor(float r,float g,float b) {
+  eye_highlight_color_r = r;
+  eye_highlight_color_g = g;
+  eye_highlight_color_b = b;
+}
 
 class Shapes {       // This class for shapes to draw face and body
   public:            // Access specifier
@@ -339,10 +346,9 @@ void key(unsigned char keyPressed, int x, int y) //faces
     switch (keyPressed) {
 
     case 'H':  //to rotate the simile face counterclockwise relative to y-axis
+
         //happy mouth & eye
-        buble_eye_clr = 1.0;
-        buble_eye_clr12 = 1.0f;
-        buble_eye_clr2 = 1.6f;
+        changeEyeColor(1.0f,1.0f,1.6f);
 
         hpy_muth_1 = 0.65;
         hpy_muth_2 = 0.5;
@@ -381,9 +387,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
         break;
 
     case 'h':// to rotate the simile face clockwise relative to y - axis
-        buble_eye_clr = 1.0f;
-        buble_eye_clr12 = 1.0f;
-        buble_eye_clr2 = 1.6f;
+        
+        changeEyeColor(1.0f,1.0f,1.6f);
 
         hpy_muth_1 = 0.65;
         hpy_muth_2 = 0.5;
@@ -424,9 +429,9 @@ void key(unsigned char keyPressed, int x, int y) //faces
         break;
 
     case 'S'://to rotate the sad face counterclockwise relative to x-axi
-        buble_eye_clr = 0.529;
-        buble_eye_clr2 = 0.980;
-        buble_eye_clr12 = 0.808;
+
+        changeEyeColor(0.529,0.808,0.980);
+        
 
         sad_muth_tra = 90.0;
         sad_muth_tras_2 = -0.46;
@@ -464,9 +469,9 @@ void key(unsigned char keyPressed, int x, int y) //faces
         break;
 
     case 's'://to rotate the sad face clockwise relative to x-axis
-        buble_eye_clr = 0.529;
-        buble_eye_clr2 = 0.980;
-        buble_eye_clr12 = 0.808;
+
+        changeEyeColor(0.529,0.808,0.980);
+
 
         sad_muth_tra = 90.0;
         sad_muth_tras_2 = -0.46;
@@ -517,10 +522,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
 
         Eyelid = 0.0;
         sad_drops1 = 0.0;
-
-        buble_eye_clr = 1.000;
-        buble_eye_clr2 = 1.000;
-        buble_eye_clr12 = 1.000;
+        
+        changeEyeColor(1.000,1.000,1.000);
 
         suprised_eye1 = 0.17;
         suprised_eye2 = 0.43;
@@ -559,9 +562,7 @@ void key(unsigned char keyPressed, int x, int y) //faces
         Eyelid = 0.0;
         sad_drops1 = 0.0;
 
-        buble_eye_clr = 1.000;
-        buble_eye_clr2 = 1.000;
-        buble_eye_clr12 = 1.000;
+        changeEyeColor(1.000,1.000,1.000);
 
         suprised_eye1 = 0.17;
         suprised_eye2 = 0.43;
@@ -772,12 +773,12 @@ void EYES()
     partObj.draw_EYEBROW();
     glPopMatrix();
 
-    //tye buble eye for happy buble_eye_clr
+    //tye buble eye for happy eye_highlight_color_r
     //buble EYE R HAPPY & sad
     glPushMatrix();
     glTranslatef(0.36, -0.1, 0.0);//-0.1 y sad_drops
     glScalef(0.1, 0.1, 0.0);
-    glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
+    glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
 
@@ -785,7 +786,7 @@ void EYES()
     glPushMatrix();
     glTranslatef(-0.36, -0.1, 0.0);
     glScalef(0.1, 0.1, 0.0);
-    glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
+    glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
 
@@ -811,7 +812,7 @@ void EYES()
     glPushMatrix();
     glTranslatef(0.36, -0.2, 0.0);//second drop
     glScalef(sad_drops1, sad_drops1, 0.0);
-    glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
+    glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
 
@@ -819,14 +820,14 @@ void EYES()
     glPushMatrix();
     glTranslatef(-0.36, -0.2, 0.0);
     glScalef(sad_drops1, sad_drops1, 0.0);
-    glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
+    glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
     //-----
     glPushMatrix();
     glTranslatef(0.36, -0.3, 0.0);//thired drop
     glScalef(sad_drops1, sad_drops1, 0.0);
-    glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
+    glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
 
@@ -834,7 +835,7 @@ void EYES()
     glPushMatrix();
     glTranslatef(-0.36, -0.3, 0.0);
     glScalef(sad_drops1, sad_drops1, 0.0);
-    glColor3f(buble_eye_clr, buble_eye_clr12, buble_eye_clr2);
+    glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
 
@@ -932,7 +933,7 @@ void MOUTH()
     glScalef(suprised_mouth3, suprised_mouth4, 0.0);//24y,2x
     glRotatef(271.0, 0.0, 0.0, 1.0);
     glColor3f(1.000f, 0.714f, 0.757f);//0.859f,0.439f,0.576f
-    draw_tonge();
+    partObj.draw_tonge();
     glPopMatrix();
 
 }
@@ -1387,11 +1388,8 @@ int main(int argc, char** argv)
     glutCreateWindow("ASTRO BOY");
     init();
 
-
     //happy
-    buble_eye_clr = 0.0f;
-    buble_eye_clr12 = 0.0f;
-    buble_eye_clr2 = 0.0f;
+    changeEyeColor(0.0f,0.0f,0.0f);
     hpy_muth_1 = 0.0;
     hpy_muth_2 = 0.0;
     hpy_muth_3 = 0.0;
