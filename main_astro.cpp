@@ -14,11 +14,12 @@ win_hight = 500;
 float eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b;
 float change_mouth_scale_1, change_mouth_scale_2, change_mouth_scale_3;
 //SAD
-float sad_muth_tra, sad_muth_tras_2, sad_muth_tras_3, sad_scal_tong1, sad_scal_tong1y, sad_drops1, Eyelid
-, EYEBROW1, EYEBROWtran, EYEBROW1_RIGHT;
+float sad_mouth_angle, sad_mouth_translate_y1, sad_mouth_translate_y2, sad_scal_tong1, sad_scal_tong1y, sad_drops1, 
+Eyelid, EYEBROW1, EYEBROWtran, EYEBROW1_RIGHT;
 //SUPRISED
 float suprised_eyetran, suprised_eyetran2, suprised_eye1, suprised_eye2, suprised_mouth1, suprised_mouth2,
 suprised_mouth3, suprised_mouth4;
+
 //ROTATION
 GLfloat angle = 45.0f;//rotate 45.0f
 float xaxis, yaxis, zaxis, clockwise, face_clr1, face_clr2, face_clr3;
@@ -26,7 +27,6 @@ float xaxis, yaxis, zaxis, clockwise, face_clr1, face_clr2, face_clr3;
 //EXTRA
 bool leser = true;//Extra leaser gun
 float flyud, flyrl, robotbody, robotface, shot, leaseron1, leaseron2, leaseron3;
-
 
 void changeEyeColor(float r,float g,float b) {
     eye_highlight_color_r = r;
@@ -37,6 +37,11 @@ void changeHappyMouthScale(float x,float y,float z) {
     change_mouth_scale_1 = x; 
     change_mouth_scale_2 = y; 
     change_mouth_scale_3 = z;
+}
+void changeSadMouth(float angle,float y1,float y2) {
+    sad_mouth_angle = angle;
+    sad_mouth_translate_y1 = y1;
+    sad_mouth_translate_y2 = y2;
 }
 
 class Shapes {       // This class for shapes to draw face and body
@@ -366,9 +371,9 @@ void key(unsigned char keyPressed, int x, int y) //faces
         suprised_eyetran = 0.28;
         suprised_eyetran2 = -0.28;
 
-        sad_muth_tra = 270.0;//helper to o back
-        sad_muth_tras_2 = -0.28;
-        sad_muth_tras_3 = -0.39;
+        // the angle of mouth it display the previouse of mouth when you go from sad to happy or vica versa.
+        changeSadMouth(270.0,-0.28,-0.39);
+
         sad_scal_tong1 = 0.65;
         sad_scal_tong1y = 0.0;
         sad_drops1 = 0.0;
@@ -403,9 +408,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
         suprised_eyetran = 0.28;
         suprised_eyetran2 = -0.28;
 
-        sad_muth_tra = 270.0;//helper to o back
-        sad_muth_tras_2 = -0.28;
-        sad_muth_tras_3 = -0.39;
+        changeSadMouth(270.0,-0.28,-0.39);
+
         sad_scal_tong1 = 0.65;
         sad_scal_tong1y = 0.0;
         sad_drops1 = 0.0;
@@ -430,11 +434,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
     case 'S'://to rotate the sad face counterclockwise relative to x-axi
 
         changeEyeColor(0.529,0.808,0.980);
-        
+        changeSadMouth(90.0,-0.46,-0.46);
 
-        sad_muth_tra = 90.0;
-        sad_muth_tras_2 = -0.46;
-        sad_muth_tras_3 = -0.46;
         sad_scal_tong1 = -0.55;
         sad_scal_tong1y = 0.5;
 
@@ -470,11 +471,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
     case 's'://to rotate the sad face clockwise relative to x-axis
 
         changeEyeColor(0.529,0.808,0.980);
+        changeSadMouth(90.0,-0.46,-0.46);
 
-
-        sad_muth_tra = 90.0;
-        sad_muth_tras_2 = -0.46;
-        sad_muth_tras_3 = -0.46;
         sad_scal_tong1 = -0.55;
         sad_scal_tong1y = 0.5;
 
@@ -882,9 +880,9 @@ void MOUTH()
 
     //happy mouth
     glPushMatrix();
-    glTranslatef(0.0, sad_muth_tras_2, 0.0);
+    glTranslatef(0.0, sad_mouth_translate_y1, 0.0);
     glScalef(change_mouth_scale_1, change_mouth_scale_1, 0.0);
-    glRotatef(sad_muth_tra, 0.0, 0.0, 1.0);
+    glRotatef(sad_mouth_angle, 0.0, 0.0, 1.0);
     glColor3f(0.863f, 0.078f, 0.235f);
     partObj.draw_tonge();
     glPopMatrix();
@@ -898,18 +896,18 @@ void MOUTH()
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(0.0, sad_muth_tras_3, 0.0);
+    glTranslatef(0.0, sad_mouth_translate_y2, 0.0);
     glScalef(change_mouth_scale_2, change_mouth_scale_3, 0.0);
-    glRotatef(sad_muth_tra, 0.0, 0.0, 1.0);
+    glRotatef(sad_mouth_angle, 0.0, 0.0, 1.0);
     glColor3f(0.859f, 0.439f, 0.576f);
     partObj.draw_tonge();
     glPopMatrix();
 
     //sad helper tong
     glPushMatrix();
-    glTranslatef(0.0, sad_muth_tras_2, 0.0);//sad_muth_tras_2 -0.28
+    glTranslatef(0.0, sad_mouth_translate_y1, 0.0);//sad_mouth_translate_y1 -0.28
     glScalef(sad_scal_tong1, sad_scal_tong1y, 0.0);//
-    glRotatef(sad_muth_tra, 0.0, 0.0, 1.0);//270
+    glRotatef(sad_mouth_angle, 0.0, 0.0, 1.0);//270
     glColor3f(0.859f, 0.439f, 0.576f);
     partObj.draw_tonge();
     glPopMatrix();
@@ -1388,9 +1386,8 @@ int main(int argc, char** argv)
     changeHappyMouthScale(0.0,0.0,0.0);
 
     //sad
-    sad_muth_tra = 270.0;
-    sad_muth_tras_2 = -0.28;
-    sad_muth_tras_3 = -0.39;
+    changeSadMouth(270.0,-0.28,-0.39);
+
     sad_scal_tong1 = 0.65;
     sad_scal_tong1y = 0.0;
     sad_drops1 = 0.0;
