@@ -656,7 +656,22 @@ void FACE()
     shapeObj.draw_line();
     glPopMatrix();
 
+    //hair highliter
+    glPushMatrix();
+    glTranslatef(0.45, 0.45, 0.0);
+    glScalef(0.1, 0.1, 0.0);
+    glRotatef(170.0, 1.0, 1.0, 1.0);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    shapeObj.draw_circle();
+    glPopMatrix();
 
+    glPushMatrix();
+    glTranslatef(0.35, 0.55, 0.0);
+    glScalef(0.3, 0.3, 0.0);
+    glRotatef(170.0, 1.0, 1.0, 1.0);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    shapeObj.draw_circle();
+    glPopMatrix();
 }
 
 void EYES()
@@ -670,25 +685,9 @@ void EYES()
     partObj.draw_eye();
     glPopMatrix();
 
-    //MARK L RYR
-    glPushMatrix();
-    glTranslatef(-0.3, 0.0, 0.0);
-    glScalef(0.42, 0.77, 0.0);
-    glColor3f(0.0f, 0.0f, 0.0f);
-    partObj.draw_eye();
-    glPopMatrix();
-
     //R EYE
     glPushMatrix();
     glTranslatef(0.3, 0.0, 0.0);
-    glScalef(0.4, 0.75, 0.0);
-    glColor3f(1.0f, 1.0f, 1.6f);
-    partObj.draw_eye();
-    glPopMatrix();
-
-    //L EYE
-    glPushMatrix();
-    glTranslatef(-0.3, 0.0, 0.0);
     glScalef(0.4, 0.75, 0.0);
     glColor3f(1.0f, 1.0f, 1.6f);
     partObj.draw_eye();
@@ -702,37 +701,12 @@ void EYES()
     partObj.draw_eye();
     glPopMatrix();
 
-    //L EYE b
-    glPushMatrix();
-    glTranslatef(-0.3, 0.0, 0.0);
-    glScalef(suprised_eye1, suprised_eye2, 0.0);
-    glColor3f(0.0f, 0.0f, 0.0f);
-    partObj.draw_eye();
-    glPopMatrix();
-
     //buble EYE r
     glPushMatrix();
     glTranslatef(suprised_eyetran, 0.0, 0.0);
     glScalef(0.1, 0.26, 0.0);
     glColor3f(1.0f, 1.0f, 1.6f);
     partObj.draw_eye();
-    glPopMatrix();
-
-    //buble EYE l
-    glPushMatrix();
-    glTranslatef(suprised_eyetran2, 0.0, 0.0);
-    glScalef(0.1, 0.26, 0.0);
-    glColor3f(1.0f, 1.0f, 1.6f);
-    partObj.draw_eye();
-    glPopMatrix();
-
-    //EYEBROW LEFT
-    glPushMatrix();
-    glTranslatef(-0.3, eyebrow_translate_y, 0.0);
-    glScalef(0.65, 0.65, 0.0);
-    glRotatef(eyebrow_angle, 0.0, 0.0, 1.0);
-    glColor3f(0.0f, 0.0f, 0.0f);
-    partObj.draw_EYEBROW();
     glPopMatrix();
 
     //EYEBROW RIGHT
@@ -753,26 +727,9 @@ void EYES()
     partObj.draw_eye();
     glPopMatrix();
 
-    //buble EYE l HAPPY
-    glPushMatrix();
-    glTranslatef(-0.36, -0.1, 0.0);
-    glScalef(0.1, 0.1, 0.0);
-    glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
-    partObj.draw_eye();
-    glPopMatrix();
-
     //R eyelid_scale sad
     glPushMatrix();
     glTranslatef(0.3, -0.28, 0.0);//3
-    glScalef(eyelid_scale, eyelid_scale, 0.0);
-    glRotatef(45.0, 0.0, 0.0, 1.0);
-    glColor3f(face_clr1, face_clr2, face_clr3);
-    shapeObj.draw_triangle();
-    glPopMatrix();
-
-    //L eyelid_scale sad
-    glPushMatrix();
-    glTranslatef(-0.3, -0.28, 0.0);
     glScalef(eyelid_scale, eyelid_scale, 0.0);
     glRotatef(45.0, 0.0, 0.0, 1.0);
     glColor3f(face_clr1, face_clr2, face_clr3);
@@ -787,36 +744,12 @@ void EYES()
     partObj.draw_eye();
     glPopMatrix();
 
-    //buble EYE l HAPPY
-    glPushMatrix();
-    glTranslatef(-0.36, -0.2, 0.0);
-    glScalef(tears, tears, 0.0);
-    glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
-    partObj.draw_eye();
-    glPopMatrix();
     //-----
     glPushMatrix();
     glTranslatef(0.36, -0.3, 0.0);//thired drop
     glScalef(tears, tears, 0.0);
     glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
-    glPopMatrix();
-
-    //buble EYE l HAPPY
-    glPushMatrix();
-    glTranslatef(-0.36, -0.3, 0.0);
-    glScalef(tears, tears, 0.0);
-    glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
-    partObj.draw_eye();
-    glPopMatrix();
-
-    //ear detail LEFT
-    glPushMatrix();
-    glTranslatef(-0.5, -0.2, 0.0);
-    glScalef(0.3, 0.3, 0.0);
-    glRotatef(-190.0, 0.0, 0.0, 1.0);
-    glColor3f(0.0f, 0.0f, 0.0f);
-    partObj.draw_EYEBROW();
     glPopMatrix();
 
     //ear detail RIGHT
@@ -826,23 +759,6 @@ void EYES()
     glRotatef(27.0, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
     partObj.draw_EYEBROW();
-    glPopMatrix();
-
-    //hair highliter
-    glPushMatrix();
-    glTranslatef(0.45, 0.45, 0.0);
-    glScalef(0.1, 0.1, 0.0);
-    glRotatef(170.0, 1.0, 1.0, 1.0);
-    glColor3f(1.0f, 1.0f, 1.0f);
-    shapeObj.draw_circle();
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(0.35, 0.55, 0.0);
-    glScalef(0.3, 0.3, 0.0);
-    glRotatef(170.0, 1.0, 1.0, 1.0);
-    glColor3f(1.0f, 1.0f, 1.0f);
-    shapeObj.draw_circle();
     glPopMatrix();
 
 }
@@ -1339,6 +1255,12 @@ void ASTROBOY()//ASTRO BOY FACE
     glScalef(robotface, robotface, 0.0f);//to show robot body
     FACE();
     EYES();
+    //add left eye and flip it in y-axis
+    glPushMatrix();
+    glRotatef(180.0, 0.0, 1.0, 0.0);
+    EYES();
+    glPopMatrix();
+
     MOUTH();
     glPopMatrix();
 
