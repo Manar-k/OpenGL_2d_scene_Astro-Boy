@@ -9,13 +9,13 @@ using namespace std;
 GLint win_width = 500,
 win_hight = 500;
 
-//HAPPY variables
+//happy variables
 float eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b;
 float change_mouth_scale_1, change_mouth_scale_2, change_mouth_scale_3;
 //SAD variables
 float sad_mouth_angle, sad_mouth_translate_y1, sad_mouth_translate_y2, tongue_scale_x, tongue_scale_y, tears, 
-eyelid_scale, EYEBROW1, EYEBROWtran, EYEBROW1_RIGHT;
-//SUPRISED variables
+eyelid_scale, eyebrow_angle, eyebrow_translate_y, eyebrow_right_angle;
+//suprised variables
 float suprised_eyetran, suprised_eyetran2, suprised_eye1, suprised_eye2, suprised_mouth1, suprised_mouth2,
 suprised_mouth3, suprised_mouth4;
 
@@ -47,6 +47,11 @@ void faceReaction(float x,float y,float tear,float eyelid) {
     tongue_scale_y = y; 
     tears = tear;
     eyelid_scale = eyelid;
+}
+void changeEyebrow(float left,float y,float right) {
+    eyebrow_angle = left;
+    eyebrow_translate_y = y;
+    eyebrow_right_angle = right;
 }
 
 class Shapes {       // This class for shapes to draw face and body
@@ -381,9 +386,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
     
         faceReaction(0.65,0.0,0.0,0.0);
 
-        EYEBROW1 = 90.0;
-        EYEBROW1_RIGHT = 90.0;
-        EYEBROWtran = 0.2;
+        changeEyebrow(90.0,0.2,90.0);
+
         //face color
         face_clr1 = 1.0f;
         face_clr2 = 0.894f;
@@ -414,9 +418,7 @@ void key(unsigned char keyPressed, int x, int y) //faces
         changeSadMouth(270.0,-0.28,-0.39);
         faceReaction(0.65,0.0,0.0,0.0);
 
-        EYEBROW1 = 90.0;
-        EYEBROW1_RIGHT = 90.0;
-        EYEBROWtran = 0.2;
+        changeEyebrow(90.0,0.2,90.0);
 
         //face color
         face_clr1 = 1.0f;
@@ -437,9 +439,7 @@ void key(unsigned char keyPressed, int x, int y) //faces
         changeSadMouth(90.0,-0.46,-0.46);
         faceReaction(-0.55,0.5,0.1,0.6);
 
-        EYEBROWtran = 0.35;
-        EYEBROW1 = -110.0;
-        EYEBROW1_RIGHT = -70.0;
+        changeEyebrow(-110.0,0.35,-70.0);
 
         suprised_mouth1 = 0.0;//helper to o back
         suprised_mouth2 = 0.0;
@@ -470,10 +470,7 @@ void key(unsigned char keyPressed, int x, int y) //faces
         changeSadMouth(90.0,-0.46,-0.46);
 
         faceReaction(-0.55,0.5,0.1,0.6);
-
-        EYEBROWtran = 0.35;
-        EYEBROW1 = -110.0;
-        EYEBROW1_RIGHT = -70.0;
+        changeEyebrow(-110.0,0.35,-70.0);
 
         suprised_mouth1 = 0.0;//helper to o back
         suprised_mouth2 = 0.0;
@@ -503,9 +500,7 @@ void key(unsigned char keyPressed, int x, int y) //faces
         changeHappyMouthScale(0.0,0.0,0.0);
         faceReaction(0.0,0.0,0.0,0.0);
 
-        EYEBROW1 = 90.0;
-        EYEBROW1_RIGHT = 90.0;
-        EYEBROWtran = 0.2;
+        changeEyebrow(90.0,0.2,90.0);
       
         changeEyeColor(1.000,1.000,1.000);
 
@@ -536,9 +531,7 @@ void key(unsigned char keyPressed, int x, int y) //faces
         changeHappyMouthScale(0.0,0.0,0.0);
         faceReaction(0.0,0.0,0.0,0.0);
 
-        EYEBROW1 = 90.0;
-        EYEBROW1_RIGHT = 90.0;
-        EYEBROWtran = 0.2;
+        changeEyebrow(90.0,0.2,90.0);
 
         changeEyeColor(1.000,1.000,1.000);
 
@@ -735,18 +728,18 @@ void EYES()
 
     //EYEBROW LEFT
     glPushMatrix();
-    glTranslatef(-0.3, EYEBROWtran, 0.0);
+    glTranslatef(-0.3, eyebrow_translate_y, 0.0);
     glScalef(0.65, 0.65, 0.0);
-    glRotatef(EYEBROW1, 0.0, 0.0, 1.0);
+    glRotatef(eyebrow_angle, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
     partObj.draw_EYEBROW();
     glPopMatrix();
 
     //EYEBROW RIGHT
     glPushMatrix();
-    glTranslatef(0.3, EYEBROWtran, 0.0);
+    glTranslatef(0.3, eyebrow_translate_y, 0.0);
     glScalef(0.65, 0.65, 0.0);
-    glRotatef(EYEBROW1_RIGHT, 0.0, 0.0, 1.0);
+    glRotatef(eyebrow_right_angle, 0.0, 0.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
     partObj.draw_EYEBROW();
     glPopMatrix();
@@ -1374,9 +1367,7 @@ int main(int argc, char** argv)
     changeSadMouth(270.0,-0.28,-0.39);
     faceReaction(0.65,0.0,0.0,0.0);
 
-    EYEBROW1 = 90.0;
-    EYEBROW1_RIGHT = 90.0;
-    EYEBROWtran = 0.2;
+    changeEyebrow(90.0,0.2,90.0);
 
     //suprised
     suprised_eye1 = 0.3;
