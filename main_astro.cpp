@@ -1,22 +1,21 @@
-//  main.cpp
 //  openglProject
 //  Created by manar_k on 19/07/1441 AH.
 //  Copyright © 1441 manar_k. All rights reserved.
 #include <iostream>
 #define GL_SILENCE_DEPRECATION
 #include <glut.h>
-
 using namespace std;
 
 GLint win_width = 500,
 win_hight = 500;
-//HAPPY
+
+//HAPPY variables
 float eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b;
 float change_mouth_scale_1, change_mouth_scale_2, change_mouth_scale_3;
-//SAD
-float sad_mouth_angle, sad_mouth_translate_y1, sad_mouth_translate_y2, sad_scal_tong1, sad_scal_tong1y, sad_drops1, 
-Eyelid, EYEBROW1, EYEBROWtran, EYEBROW1_RIGHT;
-//SUPRISED
+//SAD variables
+float sad_mouth_angle, sad_mouth_translate_y1, sad_mouth_translate_y2, tongue_scale_x, tongue_scale_y, tears, 
+eyelid_scale, EYEBROW1, EYEBROWtran, EYEBROW1_RIGHT;
+//SUPRISED variables
 float suprised_eyetran, suprised_eyetran2, suprised_eye1, suprised_eye2, suprised_mouth1, suprised_mouth2,
 suprised_mouth3, suprised_mouth4;
 
@@ -42,6 +41,12 @@ void changeSadMouth(float angle,float y1,float y2) {
     sad_mouth_angle = angle;
     sad_mouth_translate_y1 = y1;
     sad_mouth_translate_y2 = y2;
+}
+void faceReaction(float x,float y,float tear,float eyelid) {
+    tongue_scale_x = x; 
+    tongue_scale_y = y; 
+    tears = tear;
+    eyelid_scale = eyelid;
 }
 
 class Shapes {       // This class for shapes to draw face and body
@@ -371,13 +376,11 @@ void key(unsigned char keyPressed, int x, int y) //faces
         suprised_eyetran = 0.28;
         suprised_eyetran2 = -0.28;
 
-        // the angle of mouth it display the previouse of mouth when you go from sad to happy or vica versa.
+        //it display the previouse mouth (happy mouth) when you go back from any face reaction to happy face.
         changeSadMouth(270.0,-0.28,-0.39);
+    
+        faceReaction(0.65,0.0,0.0,0.0);
 
-        sad_scal_tong1 = 0.65;
-        sad_scal_tong1y = 0.0;
-        sad_drops1 = 0.0;
-        Eyelid = 0.0;
         EYEBROW1 = 90.0;
         EYEBROW1_RIGHT = 90.0;
         EYEBROWtran = 0.2;
@@ -409,11 +412,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
         suprised_eyetran2 = -0.28;
 
         changeSadMouth(270.0,-0.28,-0.39);
+        faceReaction(0.65,0.0,0.0,0.0);
 
-        sad_scal_tong1 = 0.65;
-        sad_scal_tong1y = 0.0;
-        sad_drops1 = 0.0;
-        Eyelid = 0.0;
         EYEBROW1 = 90.0;
         EYEBROW1_RIGHT = 90.0;
         EYEBROWtran = 0.2;
@@ -435,12 +435,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
 
         changeEyeColor(0.529,0.808,0.980);
         changeSadMouth(90.0,-0.46,-0.46);
+        faceReaction(-0.55,0.5,0.1,0.6);
 
-        sad_scal_tong1 = -0.55;
-        sad_scal_tong1y = 0.5;
-
-        Eyelid = 0.6;
-        sad_drops1 = 0.1;
         EYEBROWtran = 0.35;
         EYEBROW1 = -110.0;
         EYEBROW1_RIGHT = -70.0;
@@ -473,11 +469,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
         changeEyeColor(0.529,0.808,0.980);
         changeSadMouth(90.0,-0.46,-0.46);
 
-        sad_scal_tong1 = -0.55;
-        sad_scal_tong1y = 0.5;
+        faceReaction(-0.55,0.5,0.1,0.6);
 
-        Eyelid = 0.6;
-        sad_drops1 = 0.1;
         EYEBROWtran = 0.35;
         EYEBROW1 = -110.0;
         EYEBROW1_RIGHT = -70.0;
@@ -508,16 +501,12 @@ void key(unsigned char keyPressed, int x, int y) //faces
     case 'R'://to rotate the surprise face counterclockwise relative to z-axis
         
         changeHappyMouthScale(0.0,0.0,0.0);
-        sad_scal_tong1 = 0.0;
-        sad_scal_tong1y = 0.0;
+        faceReaction(0.0,0.0,0.0,0.0);
 
         EYEBROW1 = 90.0;
         EYEBROW1_RIGHT = 90.0;
         EYEBROWtran = 0.2;
-
-        Eyelid = 0.0;
-        sad_drops1 = 0.0;
-        
+      
         changeEyeColor(1.000,1.000,1.000);
 
         suprised_eye1 = 0.17;
@@ -545,15 +534,11 @@ void key(unsigned char keyPressed, int x, int y) //faces
 
     case 'r'://to rotate the surprise face clockwise relative to z - axi
         changeHappyMouthScale(0.0,0.0,0.0);
-        sad_scal_tong1 = 0.0;
-        sad_scal_tong1y = 0.0;
+        faceReaction(0.0,0.0,0.0,0.0);
 
         EYEBROW1 = 90.0;
         EYEBROW1_RIGHT = 90.0;
         EYEBROWtran = 0.2;
-
-        Eyelid = 0.0;
-        sad_drops1 = 0.0;
 
         changeEyeColor(1.000,1.000,1.000);
 
@@ -783,19 +768,19 @@ void EYES()
     partObj.draw_eye();
     glPopMatrix();
 
-    //R Eyelid sad
+    //R eyelid_scale sad
     glPushMatrix();
     glTranslatef(0.3, -0.28, 0.0);//3
-    glScalef(Eyelid, Eyelid, 0.0);
+    glScalef(eyelid_scale, eyelid_scale, 0.0);
     glRotatef(45.0, 0.0, 0.0, 1.0);
     glColor3f(face_clr1, face_clr2, face_clr3);
     shapeObj.draw_triangle();
     glPopMatrix();
 
-    //L Eyelid sad
+    //L eyelid_scale sad
     glPushMatrix();
     glTranslatef(-0.3, -0.28, 0.0);
-    glScalef(Eyelid, Eyelid, 0.0);
+    glScalef(eyelid_scale, eyelid_scale, 0.0);
     glRotatef(45.0, 0.0, 0.0, 1.0);
     glColor3f(face_clr1, face_clr2, face_clr3);
     shapeObj.draw_triangle();
@@ -804,7 +789,7 @@ void EYES()
     //sad 3 drops
     glPushMatrix();
     glTranslatef(0.36, -0.2, 0.0);//second drop
-    glScalef(sad_drops1, sad_drops1, 0.0);
+    glScalef(tears, tears, 0.0);
     glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
@@ -812,14 +797,14 @@ void EYES()
     //buble EYE l HAPPY
     glPushMatrix();
     glTranslatef(-0.36, -0.2, 0.0);
-    glScalef(sad_drops1, sad_drops1, 0.0);
+    glScalef(tears, tears, 0.0);
     glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
     //-----
     glPushMatrix();
     glTranslatef(0.36, -0.3, 0.0);//thired drop
-    glScalef(sad_drops1, sad_drops1, 0.0);
+    glScalef(tears, tears, 0.0);
     glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
@@ -827,7 +812,7 @@ void EYES()
     //buble EYE l HAPPY
     glPushMatrix();
     glTranslatef(-0.36, -0.3, 0.0);
-    glScalef(sad_drops1, sad_drops1, 0.0);
+    glScalef(tears, tears, 0.0);
     glColor3f(eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b);
     partObj.draw_eye();
     glPopMatrix();
@@ -906,7 +891,7 @@ void MOUTH()
     //sad helper tong
     glPushMatrix();
     glTranslatef(0.0, sad_mouth_translate_y1, 0.0);//sad_mouth_translate_y1 -0.28
-    glScalef(sad_scal_tong1, sad_scal_tong1y, 0.0);//
+    glScalef(tongue_scale_x, tongue_scale_y, 0.0);//
     glRotatef(sad_mouth_angle, 0.0, 0.0, 1.0);//270
     glColor3f(0.859f, 0.439f, 0.576f);
     partObj.draw_tonge();
@@ -1387,11 +1372,8 @@ int main(int argc, char** argv)
 
     //sad
     changeSadMouth(270.0,-0.28,-0.39);
+    faceReaction(0.65,0.0,0.0,0.0);
 
-    sad_scal_tong1 = 0.65;
-    sad_scal_tong1y = 0.0;
-    sad_drops1 = 0.0;
-    Eyelid = 0.0;
     EYEBROW1 = 90.0;
     EYEBROW1_RIGHT = 90.0;
     EYEBROWtran = 0.2;
