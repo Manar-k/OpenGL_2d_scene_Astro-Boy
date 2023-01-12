@@ -16,8 +16,8 @@ float change_mouth_scale_1, change_mouth_scale_2, change_mouth_scale_3;
 float sad_mouth_angle, sad_mouth_translate_y1, sad_mouth_translate_y2, tongue_scale_x, tongue_scale_y, tears, 
 eyelid_scale, eyebrow_angle, eyebrow_translate_y, eyebrow_right_angle;
 //suprised variables
-float suprised_eyetran, suprised_eyetran2, suprised_eye1, suprised_eye2, suprised_mouth1, suprised_mouth2,
-suprised_mouth3, suprised_mouth4;
+float surprise_eye_translate_x, surprise_eye_x, surprise_eye_y, surprise_mouth_scale_1, surprise_mouth_scale_2,
+surprise_mouth_scale_3, surprise_mouth_scale_4;
 
 //ROTATION
 GLfloat angle = 45.0f;//rotate 45.0f
@@ -52,6 +52,17 @@ void changeEyebrow(float left,float y,float right) {
     eyebrow_angle = left;
     eyebrow_translate_y = y;
     eyebrow_right_angle = right;
+}
+void changeSurpriseEye(float translate_x,float scale_x,float scale_y) {
+    surprise_eye_translate_x = translate_x;
+    surprise_eye_x = scale_x;
+    surprise_eye_y = scale_y;
+}
+void changeSurpriseMouth(float mouth1,float mouth2,float mouth3,float mouth4) {
+    surprise_mouth_scale_1 = mouth1;
+    surprise_mouth_scale_2 = mouth2;
+    surprise_mouth_scale_3 = mouth3;
+    surprise_mouth_scale_4 = mouth4;
 }
 
 class Shapes {       // This class for shapes to draw face and body
@@ -371,15 +382,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
         changeEyeColor(1.0f,1.0f,1.6f);
         changeHappyMouthScale(0.65,0.5,0.28);
 
-        suprised_mouth1 = 0.0;//helper to o back
-        suprised_mouth2 = 0.0;
-        suprised_mouth3 = 0.0;
-        suprised_mouth4 = 0.0;
-
-        suprised_eye1 = 0.3;//helper to o back
-        suprised_eye2 = 0.55;
-        suprised_eyetran = 0.28;
-        suprised_eyetran2 = -0.28;
+        changeSurpriseMouth(0.0,0.0,0.0,0.0);
+        changeSurpriseEye(0.28,0.3,0.55);
 
         //it display the previouse mouth (happy mouth) when you go back from any face reaction to happy face.
         changeSadMouth(270.0,-0.28,-0.39);
@@ -405,15 +409,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
         changeEyeColor(1.0f,1.0f,1.6f);
         changeHappyMouthScale(0.65,0.5,0.28);
 
-        suprised_mouth1 = 0.0;//helper to o back
-        suprised_mouth2 = 0.0;
-        suprised_mouth3 = 0.0;
-        suprised_mouth4 = 0.0;
-
-        suprised_eye1 = 0.3;//helper to o back
-        suprised_eye2 = 0.55;
-        suprised_eyetran = 0.28;
-        suprised_eyetran2 = -0.28;
+        changeSurpriseMouth(0.0,0.0,0.0,0.0);
+        changeSurpriseEye(0.28,0.3,0.55);
 
         changeSadMouth(270.0,-0.28,-0.39);
         faceReaction(0.65,0.0,0.0,0.0);
@@ -441,15 +438,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
 
         changeEyebrow(-110.0,0.35,-70.0);
 
-        suprised_mouth1 = 0.0;//helper to o back
-        suprised_mouth2 = 0.0;
-        suprised_mouth3 = 0.0;
-        suprised_mouth4 = 0.0;
-
-        suprised_eye1 = 0.3;//helper to o back
-        suprised_eye2 = 0.55;
-        suprised_eyetran = 0.28;
-        suprised_eyetran2 = -0.28;
+        changeSurpriseMouth(0.0,0.0,0.0,0.0);
+        changeSurpriseEye(0.28,0.3,0.55);
 
         //face color
         face_clr1 = 0.933f;
@@ -472,15 +462,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
         faceReaction(-0.55,0.5,0.1,0.6);
         changeEyebrow(-110.0,0.35,-70.0);
 
-        suprised_mouth1 = 0.0;//helper to o back
-        suprised_mouth2 = 0.0;
-        suprised_mouth3 = 0.0;
-        suprised_mouth4 = 0.0;
-
-        suprised_eye1 = 0.3;//helper to o back
-        suprised_eye2 = 0.55;
-        suprised_eyetran = 0.28;
-        suprised_eyetran2 = -0.28;
+        changeSurpriseMouth(0.0,0.0,0.0,0.0);
+        changeSurpriseEye(0.28,0.3,0.55);
 
         //face color
         face_clr1 = 0.933f;
@@ -504,15 +487,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
       
         changeEyeColor(1.000,1.000,1.000);
 
-        suprised_eye1 = 0.17;
-        suprised_eye2 = 0.43;
-        suprised_eyetran = 0.3;
-        suprised_eyetran2 = -0.3;
-
-        suprised_mouth1 = 0.33;
-        suprised_mouth2 = 0.38;
-        suprised_mouth3 = 0.31;
-        suprised_mouth4 = 0.40;
+        changeSurpriseEye(0.3,0.17,0.43);
+        changeSurpriseMouth(0.33,0.38,0.31,0.40);
 
         //face color
         face_clr1 = 0.902f;
@@ -535,15 +511,8 @@ void key(unsigned char keyPressed, int x, int y) //faces
 
         changeEyeColor(1.000,1.000,1.000);
 
-        suprised_eye1 = 0.17;
-        suprised_eye2 = 0.43;
-        suprised_eyetran = 0.3;
-        suprised_eyetran2 = -0.3;
-
-        suprised_mouth1 = 0.33;
-        suprised_mouth2 = 0.38;
-        suprised_mouth3 = 0.31;
-        suprised_mouth4 = 0.40;
+        changeSurpriseEye(0.3,0.17,0.43);
+        changeSurpriseMouth(0.33,0.38,0.31,0.40);
 
         //face color
         face_clr1 = 0.902f;
@@ -696,14 +665,14 @@ void EYES()
     //R EYE b
     glPushMatrix();
     glTranslatef(0.3, 0.0, 0.0);
-    glScalef(suprised_eye1, suprised_eye2, 0.0);
+    glScalef(surprise_eye_x, surprise_eye_y, 0.0);
     glColor3f(0.0f, 0.0f, 0.0f);
     partObj.draw_eye();
     glPopMatrix();
 
     //buble EYE r
     glPushMatrix();
-    glTranslatef(suprised_eyetran, 0.0, 0.0);
+    glTranslatef(surprise_eye_translate_x, 0.0, 0.0);
     glScalef(0.1, 0.26, 0.0);
     glColor3f(1.0f, 1.0f, 1.6f);
     partObj.draw_eye();
@@ -807,9 +776,9 @@ void MOUTH()
     glPopMatrix();
 
 
-    glPushMatrix();//suprised_mouth1
+    glPushMatrix();//surprise_mouth_scale_1
     glTranslatef(0.0, -0.38, 0.0);
-    glScalef(suprised_mouth1, suprised_mouth2, 0.0);
+    glScalef(surprise_mouth_scale_1, surprise_mouth_scale_2, 0.0);
     //glRotatef(0.0, 0.0, 0.0, 1.0);
     glColor3f(0.859f, 0.439f, 0.576f);
     partObj.draw_eye();
@@ -817,7 +786,7 @@ void MOUTH()
 
     glPushMatrix();//suprised mouth
     glTranslatef(0.0, -0.38, 0.0);
-    glScalef(suprised_mouth3, suprised_mouth4, 0.0);//24y,2x
+    glScalef(surprise_mouth_scale_3, surprise_mouth_scale_4, 0.0);//24y,2x
     glRotatef(271.0, 0.0, 0.0, 1.0);
     glColor3f(1.000f, 0.714f, 0.757f);//0.859f,0.439f,0.576f
     partObj.draw_tonge();
@@ -1292,14 +1261,8 @@ int main(int argc, char** argv)
     changeEyebrow(90.0,0.2,90.0);
 
     //suprised
-    suprised_eye1 = 0.3;
-    suprised_eye2 = 0.55;
-    suprised_eyetran = 0.28;
-    suprised_eyetran2 = -0.28;
-    suprised_mouth1 = 0.0;
-    suprised_mouth2 = 0.0;
-    suprised_mouth3 = 0.0;
-    suprised_mouth4 = 0.0;
+    changeSurpriseEye(0.28,0.3,0.55);
+    changeSurpriseMouth(0.0,0.0,0.0,0.0);
 
     //rotate
     xaxis = 0.0f;
@@ -1336,4 +1299,3 @@ int main(int argc, char** argv)
     glutMainLoop();// Enter the infinitely event-processing loop
     return 0;
 }
-
