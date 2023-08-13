@@ -13,7 +13,7 @@ win_hight = 500;
 float eye_highlight_color_r, eye_highlight_color_g, eye_highlight_color_b;
 float change_mouth_scale_1, change_mouth_scale_2, change_mouth_scale_3;
 //SAD variables
-float sad_mouth_angle, sad_mouth_translate_y1, sad_mouth_translate_y2, tongue_scale_x, tongue_scale_y, tears, 
+float sad_mouth_angle, sad_mouth_translate_y1, sad_mouth_translate_y2, tongue_scale_x, tongue_scale_y, tears,
 eyelid_scale, eyebrow_angle, eyebrow_translate_y, eyebrow_right_angle;
 //suprised variables
 float surprise_eye_translate_x, surprise_eye_x, surprise_eye_y, surprise_mouth_scale_1, surprise_mouth_scale_2,
@@ -24,41 +24,41 @@ GLfloat angle = 45.0f;//rotate 45.0f
 float xaxis, yaxis, zaxis, clockwise, face_clr1, face_clr2, face_clr3;
 
 //EXTRA
-bool leser = true;//Extra leaser gun
-float flyud, flyrl, robotbody, robotface, shot, leaseron1, leaseron2, leaseron3;
+bool laser = true;//Extra leaser gun
+float flyud, flyrl, robotbody, robotface, shot, laser1, laser2, laser3;
 
-void changeEyeColor(float r,float g,float b) {
+void changeEyeColor(float r, float g, float b) {
     eye_highlight_color_r = r;
     eye_highlight_color_g = g;
     eye_highlight_color_b = b;
 }
-void changeHappyMouthScale(float x,float y,float z) {
-    change_mouth_scale_1 = x; 
-    change_mouth_scale_2 = y; 
+void changeHappyMouthScale(float x, float y, float z) {
+    change_mouth_scale_1 = x;
+    change_mouth_scale_2 = y;
     change_mouth_scale_3 = z;
 }
-void changeSadMouth(float angle,float y1,float y2) {
+void changeSadMouth(float angle, float y1, float y2) {
     sad_mouth_angle = angle;
     sad_mouth_translate_y1 = y1;
     sad_mouth_translate_y2 = y2;
 }
-void faceReaction(float x,float y,float tear,float eyelid) {
-    tongue_scale_x = x; 
-    tongue_scale_y = y; 
+void faceReaction(float x, float y, float tear, float eyelid) {
+    tongue_scale_x = x;
+    tongue_scale_y = y;
     tears = tear;
     eyelid_scale = eyelid;
 }
-void changeEyebrow(float left,float y,float right) {
+void changeEyebrow(float left, float y, float right) {
     eyebrow_angle = left;
     eyebrow_translate_y = y;
     eyebrow_right_angle = right;
 }
-void changeSurpriseEye(float translate_x,float scale_x,float scale_y) {
+void changeSurpriseEye(float translate_x, float scale_x, float scale_y) {
     surprise_eye_translate_x = translate_x;
     surprise_eye_x = scale_x;
     surprise_eye_y = scale_y;
 }
-void changeSurpriseMouth(float mouth1,float mouth2,float mouth3,float mouth4) {
+void changeSurpriseMouth(float mouth1, float mouth2, float mouth3, float mouth4) {
     surprise_mouth_scale_1 = mouth1;
     surprise_mouth_scale_2 = mouth2;
     surprise_mouth_scale_3 = mouth3;
@@ -66,31 +66,31 @@ void changeSurpriseMouth(float mouth1,float mouth2,float mouth3,float mouth4) {
 }
 
 class Shapes {       // This class for shapes to draw face and body
-  public:            // Access specifier
+public:            // Access specifier
     void draw_line()
     {
         glEnable(GL_LINE_STIPPLE);
         glLineWidth(0.5f);
         glBegin(GL_LINES);
-        
+
         glVertex2f(0.0f, 0.0f);
         glVertex2f(0.0f, 0.1f);
-        
+
         glEnd();
         glDisable(GL_LINE_STIPPLE);
-        
+
         glFlush();
     }
 
     void draw_triangle()
     {
         glBegin(GL_TRIANGLES);
-        
+
         glVertex2f(0.0f, 0.0f);
         glVertex2f(0.40f, 0.0f);
         glVertex2f(0.0f, 0.40f);
         glEnd();
-        
+
         glFlush();
     }
 
@@ -106,39 +106,39 @@ class Shapes {       // This class for shapes to draw face and body
         {
             float xnew = radius * sin(angle * i);
             float ynew = -radius * cos(angle * i);
-            
+
             glBegin(GL_TRIANGLES);
             glVertex3f(0.0f, 0.0f, 0.0f);
             glVertex3f(x2, y2, 0.0);
             glVertex3f(xnew, ynew, 0.0);
             glEnd();
-            
+
             x2 = xnew;
             y2 = ynew;
-        }    
-    glFlush();
+        }
+        glFlush();
     }
 
     void draw_bow()
     {
         float x1 = 0.0f, y1 = 0.0f, radius = 0.04f;
-        
+
         int steps = 1000;
         float x2 = x1;
         float y2 = y1 - radius;
         float angle = 3.1415926f * 3.0f / steps;
-        
+
         for (int i = 0; i < steps; i++)
         {
             float xnew = radius * sin(angle * i);
             float ynew = -radius * cos(angle * i);
-            
+
             glBegin(GL_POINTS);
             glVertex3f(0.0f, 0.0f, 0.0f);
             glVertex3f(x2, y2, 0.0);
             glVertex3f(xnew, ynew, 0.0);
             glEnd();
-            
+
             x2 = xnew;
             y2 = ynew;
         }
@@ -151,7 +151,7 @@ class Shapes {       // This class for shapes to draw face and body
 Shapes shapeObj;
 
 class Parts {
-  public:
+public:
     void draw_mouth()
     {
         glBegin(GL_LINES);
@@ -159,30 +159,30 @@ class Parts {
         glVertex2f(0.0f, 0.0f);
         glVertex2f(0.0f, 0.2f);
         glEnd();
-        
+
         glFlush();
     }
 
     void draw_EYEBROW()
     {
         float x1 = 0.0f, y1 = 0.0f, radius = 0.2f;
-        
+
         int steps = 1000;
         float x2 = x1;
         float y2 = y1 - radius;
         float angle = 3.1415926f * 1.0f / steps;
-        
+
         for (int i = 0; i < steps; i++)
         {
             float xnew = radius * sin(angle * i);
             float ynew = -radius * cos(angle * i);
-            
+
             glBegin(GL_POINTS);
             glVertex3f(0.0f, 0.0f, 0.0f);
             glVertex3f(x2, y2, 0.0);
             glVertex3f(xnew, ynew, 0.0);
             glEnd();
-            
+
             x2 = xnew;
             y2 = ynew;
         }
@@ -206,13 +206,13 @@ class Parts {
             glVertex3f(x2, y2, 0.0);
             glVertex3f(xnew, ynew, 0.0);
             glEnd();
-            
+
             x2 = xnew;
             y2 = ynew;
         }
         glFlush();
     }
-    
+
     void draw_eye()
     {
         float x1 = 0.0f, y1 = 0.0f, radius = 0.3f;
@@ -236,7 +236,7 @@ class Parts {
         }
         glFlush();
     }
-    
+
     void draw_ear()
     {
         float x1 = 0.0f, y1 = 0.0f, radius = 0.1f;
@@ -260,7 +260,7 @@ class Parts {
         }
         glFlush();
     }
-    
+
     void draw_hair()
     {
         float x1 = 0.0f, y1 = 0.0f, radius = 0.6f;
@@ -286,26 +286,22 @@ class Parts {
         }
         glFlush();
     }
+
+    void drawlaser(void)
+    {
+        glLineWidth(10.0f);
+        glBegin(GL_LINES);
+        glColor3f(1, 0, 0);
+        glVertex2i(0.0, 0.0);
+        glColor3f(0, 0, 1);
+        glVertex2f(0.0, 0.5);
+        glEnd();
+
+        glFlush();
+    }
 };
 
 Parts partObj;
-
-
-void drawleaser(void)//extra
-{
-    glEnable(GL_LINE_STIPPLE);
-    glLineWidth(10.0f);
-
-    glBegin(GL_LINES);
-    glColor3f(1, 0, 0);
-    glVertex2i(0.0, 0.0);
-    glColor3f(0, 0, 1);
-    glVertex2f(0.0, 0.5);
-
-    glEnd();
-    glDisable(GL_LINE_STIPPLE);
-    glFlush();
-}
 
 
 static //to start moving astro boy by showing body
@@ -316,9 +312,9 @@ void mouse(int button, int state, int x, int y)
             robotbody = 0.5f;
             robotface = 0.5f;
             shot = 0.0;
-            leaseron1 = 0.412f;
-            leaseron2 = 0.412f;
-            leaseron3 = 0.412f;
+            laser1 = 0.412f;
+            laser2 = 0.412f;
+            laser3 = 0.412f;
 
         }
     }
@@ -328,9 +324,9 @@ void mouse(int button, int state, int x, int y)
             robotbody = 0.5f;
             robotface = 0.5f;
             shot = 0.5;
-            leaseron1 = 1.0f;
-            leaseron2 = 0.0f;
-            leaseron3 = 0.0f;
+            laser1 = 1.0f;
+            laser2 = 0.0f;
+            laser3 = 0.0f;
 
         }
     }
@@ -379,18 +375,18 @@ void key(unsigned char keyPressed, int x, int y) //faces
     case 'H':  //to rotate the simile face counterclockwise relative to y-axis
 
         //happy mouth & eye
-        changeEyeColor(1.0f,1.0f,1.6f);
-        changeHappyMouthScale(0.65,0.5,0.28);
+        changeEyeColor(1.0f, 1.0f, 1.6f);
+        changeHappyMouthScale(0.65, 0.5, 0.28);
 
-        changeSurpriseMouth(0.0,0.0,0.0,0.0);
-        changeSurpriseEye(0.28,0.3,0.55);
+        changeSurpriseMouth(0.0, 0.0, 0.0, 0.0);
+        changeSurpriseEye(0.28, 0.3, 0.55);
 
         //it display the previouse mouth (happy mouth) when you go back from any face reaction to happy face.
-        changeSadMouth(270.0,-0.28,-0.39);
-    
-        faceReaction(0.65,0.0,0.0,0.0);
+        changeSadMouth(270.0, -0.28, -0.39);
 
-        changeEyebrow(90.0,0.2,90.0);
+        faceReaction(0.65, 0.0, 0.0, 0.0);
+
+        changeEyebrow(90.0, 0.2, 90.0);
 
         //face color
         face_clr1 = 1.0f;
@@ -405,17 +401,17 @@ void key(unsigned char keyPressed, int x, int y) //faces
         break;
 
     case 'h':// to rotate the simile face clockwise relative to y - axis
-        
-        changeEyeColor(1.0f,1.0f,1.6f);
-        changeHappyMouthScale(0.65,0.5,0.28);
 
-        changeSurpriseMouth(0.0,0.0,0.0,0.0);
-        changeSurpriseEye(0.28,0.3,0.55);
+        changeEyeColor(1.0f, 1.0f, 1.6f);
+        changeHappyMouthScale(0.65, 0.5, 0.28);
 
-        changeSadMouth(270.0,-0.28,-0.39);
-        faceReaction(0.65,0.0,0.0,0.0);
+        changeSurpriseMouth(0.0, 0.0, 0.0, 0.0);
+        changeSurpriseEye(0.28, 0.3, 0.55);
 
-        changeEyebrow(90.0,0.2,90.0);
+        changeSadMouth(270.0, -0.28, -0.39);
+        faceReaction(0.65, 0.0, 0.0, 0.0);
+
+        changeEyebrow(90.0, 0.2, 90.0);
 
         //face color
         face_clr1 = 1.0f;
@@ -432,14 +428,14 @@ void key(unsigned char keyPressed, int x, int y) //faces
 
     case 'S'://to rotate the sad face counterclockwise relative to x-axi
 
-        changeEyeColor(0.529,0.808,0.980);
-        changeSadMouth(90.0,-0.46,-0.46);
-        faceReaction(-0.55,0.5,0.1,0.6);
+        changeEyeColor(0.529, 0.808, 0.980);
+        changeSadMouth(90.0, -0.46, -0.46);
+        faceReaction(-0.55, 0.5, 0.1, 0.6);
 
-        changeEyebrow(-110.0,0.35,-70.0);
+        changeEyebrow(-110.0, 0.35, -70.0);
 
-        changeSurpriseMouth(0.0,0.0,0.0,0.0);
-        changeSurpriseEye(0.28,0.3,0.55);
+        changeSurpriseMouth(0.0, 0.0, 0.0, 0.0);
+        changeSurpriseEye(0.28, 0.3, 0.55);
 
         //face color
         face_clr1 = 0.933f;
@@ -456,14 +452,14 @@ void key(unsigned char keyPressed, int x, int y) //faces
 
     case 's'://to rotate the sad face clockwise relative to x-axis
 
-        changeEyeColor(0.529,0.808,0.980);
-        changeSadMouth(90.0,-0.46,-0.46);
+        changeEyeColor(0.529, 0.808, 0.980);
+        changeSadMouth(90.0, -0.46, -0.46);
 
-        faceReaction(-0.55,0.5,0.1,0.6);
-        changeEyebrow(-110.0,0.35,-70.0);
+        faceReaction(-0.55, 0.5, 0.1, 0.6);
+        changeEyebrow(-110.0, 0.35, -70.0);
 
-        changeSurpriseMouth(0.0,0.0,0.0,0.0);
-        changeSurpriseEye(0.28,0.3,0.55);
+        changeSurpriseMouth(0.0, 0.0, 0.0, 0.0);
+        changeSurpriseEye(0.28, 0.3, 0.55);
 
         //face color
         face_clr1 = 0.933f;
@@ -479,16 +475,16 @@ void key(unsigned char keyPressed, int x, int y) //faces
         break;
 
     case 'R'://to rotate the surprise face counterclockwise relative to z-axis
-        
-        changeHappyMouthScale(0.0,0.0,0.0);
-        faceReaction(0.0,0.0,0.0,0.0);
 
-        changeEyebrow(90.0,0.2,90.0);
-      
-        changeEyeColor(1.000,1.000,1.000);
+        changeHappyMouthScale(0.0, 0.0, 0.0);
+        faceReaction(0.0, 0.0, 0.0, 0.0);
 
-        changeSurpriseEye(0.3,0.17,0.43);
-        changeSurpriseMouth(0.33,0.38,0.31,0.40);
+        changeEyebrow(90.0, 0.2, 90.0);
+
+        changeEyeColor(1.000, 1.000, 1.000);
+
+        changeSurpriseEye(0.3, 0.17, 0.43);
+        changeSurpriseMouth(0.33, 0.38, 0.31, 0.40);
 
         //face color
         face_clr1 = 0.902f;
@@ -504,15 +500,15 @@ void key(unsigned char keyPressed, int x, int y) //faces
         break;
 
     case 'r'://to rotate the surprise face clockwise relative to z - axi
-        changeHappyMouthScale(0.0,0.0,0.0);
-        faceReaction(0.0,0.0,0.0,0.0);
+        changeHappyMouthScale(0.0, 0.0, 0.0);
+        faceReaction(0.0, 0.0, 0.0, 0.0);
 
-        changeEyebrow(90.0,0.2,90.0);
+        changeEyebrow(90.0, 0.2, 90.0);
 
-        changeEyeColor(1.000,1.000,1.000);
+        changeEyeColor(1.000, 1.000, 1.000);
 
-        changeSurpriseEye(0.3,0.17,0.43);
-        changeSurpriseMouth(0.33,0.38,0.31,0.40);
+        changeSurpriseEye(0.3, 0.17, 0.43);
+        changeSurpriseMouth(0.33, 0.38, 0.31, 0.40);
 
         //face color
         face_clr1 = 0.902f;
@@ -793,33 +789,33 @@ void MOUTH()
     glPopMatrix();
 
 }
-void leaser_shot()//EXTRA
+void laser_shots()//EXTRA
 {
     glPushMatrix();//leaser shot
     glTranslatef(0.8, -0.53, 0.0);
     glScalef(0.7, 0.7, 0.0);
     glRotatef(angle, 0.0, 0.0, 1.0);
-    drawleaser();
+    partObj.drawlaser();
     glPopMatrix();
 
     glPushMatrix();//leaser shot
     glTranslatef(0.8, -0.53, 0.0);
     glScalef(1.0, 1.0, 0.0);
     glRotatef(angle, 1.0, 1.0, 0.0);
-    drawleaser();
+    partObj.drawlaser();
     glPopMatrix();
 
     glPushMatrix();//leaser shot
     glTranslatef(0.8, -0.53, 0.0);
     glScalef(1.0, 1.0, 0.0);
     glRotatef(angle, 1.0, 0.0, 0.0);
-    drawleaser();
+    partObj.drawlaser();
     glPopMatrix();
 }
 
 void body()
 {
-    if (leser) {
+    if (laser) {
         //left fire
         glPushMatrix();
         glTranslatef(-0.2, -0.9, 0.0);
@@ -1088,12 +1084,12 @@ void body()
     shapeObj.draw_circle();
     glPopMatrix();
 
-    if (leser) {
+    if (laser) {
         glPushMatrix();//l turn on leaser gun
         glTranslatef(-1.1, -0.55, 0.0);
         glScalef(0.25, 0.25, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
-        glColor3f(leaseron1, leaseron2, leaseron3);
+        glColor3f(laser1, laser2, laser3);
         shapeObj.draw_circle();
         glPopMatrix();
     }
@@ -1152,13 +1148,13 @@ void body()
     shapeObj.draw_circle();
     glPopMatrix();
 
-    if (leser) {
+    if (laser) {
         //R turn on leaser gun
         glPushMatrix();
         glTranslatef(0.8, -0.53, 0.0);
         glScalef(0.4, 0.4, 0.0);
         glRotatef(85.0, 0.0, 0.0, 1.0);
-        glColor3f(leaseron1, leaseron2, leaseron3);
+        glColor3f(laser1, laser2, laser3);
         shapeObj.draw_circle();
         glPopMatrix();
     }
@@ -1177,7 +1173,7 @@ void body()
 
 void update(int value) {
     glutTimerFunc(50, update, 0);
-    leser = !leser;
+    laser = !laser;
 }
 
 
@@ -1207,7 +1203,7 @@ void ASTROBOY()//ASTRO BOY FACE
     glTranslatef(flyrl, flyud, 0.0f);
     glRotatef(angle, xaxis, yaxis, zaxis);
     glScalef(shot, shot, 0.0f);
-    leaser_shot();//EXTRA leaser shot
+    laser_shots();//EXTRA leaser shot
     glPopMatrix();
 
     glPushMatrix();
@@ -1215,7 +1211,7 @@ void ASTROBOY()//ASTRO BOY FACE
     glRotatef(angle, xaxis, yaxis, zaxis);
     glTranslatef(-0.95, 0.0f, 0.0f);
     glScalef(shot, shot, 0.0f);
-    leaser_shot();//EXTRA leaser shot
+    laser_shots();//EXTRA leaser shot
     glPopMatrix();
 
     glPushMatrix();//HAPPY,SAD,SUPRISED,ROTATION FACES
@@ -1251,18 +1247,18 @@ int main(int argc, char** argv)
     init();
 
     //happy
-    changeEyeColor(0.0f,0.0f,0.0f);
-    changeHappyMouthScale(0.0,0.0,0.0);
+    changeEyeColor(0.0f, 0.0f, 0.0f);
+    changeHappyMouthScale(0.0, 0.0, 0.0);
 
     //sad
-    changeSadMouth(270.0,-0.28,-0.39);
-    faceReaction(0.65,0.0,0.0,0.0);
+    changeSadMouth(270.0, -0.28, -0.39);
+    faceReaction(0.65, 0.0, 0.0, 0.0);
 
-    changeEyebrow(90.0,0.2,90.0);
+    changeEyebrow(90.0, 0.2, 90.0);
 
     //suprised
-    changeSurpriseEye(0.28,0.3,0.55);
-    changeSurpriseMouth(0.0,0.0,0.0,0.0);
+    changeSurpriseEye(0.28, 0.3, 0.55);
+    changeSurpriseMouth(0.0, 0.0, 0.0, 0.0);
 
     //rotate
     xaxis = 0.0f;
@@ -1281,16 +1277,16 @@ int main(int argc, char** argv)
     robotbody = 0.0f;
     robotface = 1.0f;
     shot = 0.0f;
-    leaseron1 = 0.412f;
-    leaseron2 = 0.412f;
-    leaseron3 = 0.412f;
+    laser1 = 0.412f;
+    laser2 = 0.412f;
+    laser3 = 0.412f;
 
     glutIdleFunc(play);
     glutDisplayFunc(ASTROBOY);
     glutReshapeFunc(reshapeFunc);
 
     glutTimerFunc(0, timer, 0);//for rotate
-    glutTimerFunc(0, update, 0);//5 leser
+    glutTimerFunc(0, update, 0);//5 laser
 
     glutMouseFunc(mouse);//make astro boy sho leaser gun
     glutSpecialFunc(keyfly);//EXTRA MAKE ASTRO BOY FLY (move)
